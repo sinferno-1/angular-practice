@@ -1,2 +1,13 @@
 <app-navbar></app-navbar>
-<h1>Welcome to Home Page</h1>
+
+<div class="city-selection">
+  <label for="city">Select a City:</label>
+  <select id="city" [(ngModel)]="selectedCity">
+    <option value="" disabled selected>Select City</option>
+    <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+  </select>
+</div>
+
+<div *ngIf="selectedCity">
+  <h2>City selected is {{ selectedCity }}</h2>
+</div>
