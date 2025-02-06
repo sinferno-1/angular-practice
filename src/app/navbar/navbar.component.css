@@ -1,4 +1,4 @@
-/* Navbar container */
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -9,7 +9,6 @@
     font-family: Arial, sans-serif;
   }
   
-  /* Navigation links */
   .nav-links {
     display: flex;
   }
@@ -28,7 +27,6 @@
     border-radius: 4px;
   }
   
-  /* Logout button */
   button {
     background-color: #f44336;
     color: white;
