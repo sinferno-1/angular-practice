@@ -1,4 +1,4 @@
-
+/* Form Container */
 form {
     max-width: 400px;
     margin: 50px auto;
@@ -8,31 +8,20 @@ form {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
-  form div {
-    margin-bottom: 15px;
-  }
-  
-  form label {
-    font-size: 16px;
-    font-weight: bold;
-    display: block;
-    margin-bottom: 8px;
-  }
-  
-  form input {
+  /* Form Fields */
+  input {
     width: 100%;
     padding: 10px;
-    font-size: 14px;
+    margin: 8px 0;
     border: 1px solid #ddd;
     border-radius: 4px;
-    box-sizing: border-box;
   }
   
-  form input:focus {
+  input:focus {
     border-color: #007bff;
-    outline: none;
   }
   
+  /* Submit Button */
   button {
     width: 100%;
     padding: 12px;
@@ -43,13 +32,18 @@ form {
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s;
-    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
   }
   
   button:hover {
     background-color: #0056b3;
   }
   
+  /* Error Message */
   .error {
     color: red;
     font-size: 14px;
@@ -57,7 +51,3 @@ form {
     text-align: center;
   }
   
-  a{
-    margin: 20px;
-   /* padding: 20px; */
-  }

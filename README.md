@@ -1,3 +1,42 @@
+# for 4th iteration:
+sign in page
+ 
+register form:->
+
+user validation
+
+email validation
+
+password (strong pwd criteria)
+
+F name, L name,
+
+DOB // Date picker
+ 
+registration for not existing users
+ 
+ 
+(integrate json backend)
+ 
+parent-child interaction.
+ 
+dashboard-> username, currentDate Time, and Selected City name. append when new city is selected.
+ 
+lazy loading- > Dashboard. & Home (Module)
+ 
+username from login page fetched and displayed in navbar
+ 
+ 
+1. login form, username and password. successful route -> home/dashboard   service call
+
+2. nav bar   logout button
+ 
+page not found 404 if wrong route given.
+
+ 
+
+
+
 # Login1
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.

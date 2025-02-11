@@ -1,10 +1,11 @@
 <nav class="navbar">
   <div class="nav-links">
     <a routerLink="/home">Home</a>
-    <a routerLink="/info">Info</a>
     <a routerLink="/dashboard">Dashboard</a>
   </div>
-  <a routerLink="/dashboard">Hi Admin</a>
-  <button (click)="logout()">Logout</button>
-</nav>
 
+  <div class="nav-user">
+    <span *ngIf="username">{{ username }}!</span> 
+    <button *ngIf="username" (click)="logout()">Logout</button>
+  </div>
+</nav>

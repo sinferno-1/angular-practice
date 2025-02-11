@@ -1,0 +1,98 @@
+{
+  "users": [
+    {
+      "id": "00cb",
+      "firstName": "Anu",
+      "lastName": "Gupta",
+      "username": "sinferno",
+      "dob": "2025-02-04",
+      "password": "879575@Annnnnnnnnnnnnnnn"
+    },
+    {
+      "id": "e4f3",
+      "firstName": "g",
+      "lastName": "Sharma",
+      "username": "sinferno",
+      "dob": "2025-02-05",
+      "password": "879575@Annnnnnnnnnnnnnnn"
+    },
+    {
+      "id": "1b7b",
+      "firstName": "Anu",
+      "lastName": "Sharma",
+      "username": "sharmaji",
+      "email": "cshin2512@gmail.com",
+      "dob": "2025-02-05",
+      "password": "ee@123rW"
+    },
+    {
+      "id": "905e",
+      "firstName": "Anu",
+      "lastName": "Sharma",
+      "username": "sharmaji2",
+      "email": "cshin25112@gmail.com",
+      "dob": "2025-02-12",
+      "password": "879575@Annnnnnnnnnnnnnnn"
+    },
+    {
+      "id": "f847",
+      "firstName": "Garvita Sen",
+      "lastName": "eec",
+      "username": "hello",
+      "email": "mocored719@almaxen.com",
+      "dob": "2025-02-14",
+      "password": "879575@Annnnnnnnnnnnnnnn"
+    },
+    {
+      "id": "9dc6",
+      "firstName": "ss",
+      "lastName": "eec",
+      "username": "rrrr",
+      "email": "narurtosingh@gmail.com",
+      "dob": "2025-02-20",
+      "password": "432@Annh"
+    },
+    {
+      "id": "8c72",
+      "firstName": "Hi",
+      "lastName": "Hello",
+      "username": "hello2",
+      "email": "if@gmail.com",
+      "dob": "2025-02-05",
+      "password": "456@Ann",
+      "country": "India",
+      "city": "Bengaluru"
+    },
+    {
+      "id": "0e12",
+      "firstName": "yash",
+      "lastName": "pahlani",
+      "username": "pahlani",
+      "email": "pahlani@gmail.com",
+      "dob": "2025-02-05",
+      "password": "Yash@123"
+    },
+    {
+      "id": "a984",
+      "firstName": "hehe",
+      "lastName": "huhu",
+      "username": "h",
+      "email": "h@gmail.com",
+      "dob": "2025-02-07",
+      "password": "123@Ann",
+      "confirmPassword": "123@Ann",
+      "country": "Australia",
+      "city": "Perth"
+    },
+    {
+      "id": "0f34",
+      "firstName": "l",
+      "lastName": "m",
+      "username": "n",
+      "email": "h@gmail.com",
+      "dob": "2025-02-06",
+      "password": "123@Anurag",
+      "confirmPassword": "123@Anurag"
+    }
+  ]
+}

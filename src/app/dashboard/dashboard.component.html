@@ -1,0 +1,22 @@
+
+<app-navbar></app-navbar>
+<div>
+  <label for="country">Country:</label>
+  <select id="country" [(ngModel)]="selectedCountry" (change)="onCountryChange()">
+    <option *ngFor="let country of countries" [value]="country">{{country}}</option>
+  </select>
+</div>
+
+<div>
+  <label for="city">City:</label>
+  <select id="city" [(ngModel)]="selectedCity" (change)="showPopup()">
+    <option *ngFor="let city of cities" [value]="city">{{city}}</option>
+  </select>
+</div>
+
+<div *ngIf="isPopupVisible" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="closePopup()">&times;</span>
+    <p>Country: {{selectedCountry}}, City: {{selectedCity}}</p>
+  </div>
+</div>

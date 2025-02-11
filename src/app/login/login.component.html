@@ -1,14 +1,17 @@
-<form (ngSubmit)="login()">
+<form [formGroup]="loginForm" (ngSubmit)="login()">
   <div>
     <label for="username">Username:</label>
-    <input type="text" id="username" [(ngModel)]="userinfo.username" name="username" required />
+    <input type="text" id="username" formControlName="username" required />
   </div>
+
   <div>
     <label for="password">Password:</label>
-    <input type="password" id="password" [(ngModel)]="userinfo.password" name="password" required />
+    <input type="password" id="password" formControlName="password" required />
   </div>
-  <div>
-  <button type="submit">Login</button>
-</div>
+
+  <button type="submit" [disabled]="loginForm.invalid">Login</button>
+
   <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  <a routerLink="/signup">Sign Up</a>
 </form>
