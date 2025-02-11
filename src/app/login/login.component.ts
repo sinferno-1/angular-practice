@@ -1,28 +1,44 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
+  standalone: true,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports:[FormsModule, CommonModule],
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
 })
 export class LoginComponent {
-  userinfo: any = {};
-  errorMessage = '';
-  private authService = inject(AuthService);
-  
-  constructor(private router: Router) {}
+  loginForm: FormGroup;
+  errorMessage: string = '';
+
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+    this.loginForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+    });
+  }
 
   login() {
-    if (this.authService.login(this.userinfo.username, this.userinfo.password)) {
-      this.errorMessage = ''; 
-      this.router.navigate(['/home']);
-    } else {
-      this.errorMessage = 'Invalid username or password!';
+    if (this.loginForm.valid) {
+      const { username, password } = this.loginForm.value;
+      this.authService.login(username, password).subscribe(
+        (users) => {
+          if (this.authService.validateUser(users, username, password)) {
+            this.router.navigate(['/home']);
+          } else {
+            this.errorMessage = 'Invalid username or password!';
+          }
+        },
+        (error) => {
+          console.error('Login error:', error);
+          this.errorMessage = 'Login failed! Please try again later.';
+        }
+      );
     }
   }
 }

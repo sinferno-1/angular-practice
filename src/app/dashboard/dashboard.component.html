@@ -1,0 +1,21 @@
+<h1>Dashboard</h1>
+
+<div>
+  <label for="country">Select Country:</label>
+  <!-- <select id="country" (change)="onSelectCountry($event.target.value)"> -->
+    <option value="">-- Select Country --</option>
+    <option *ngFor="let country of countries | keyvalue" [value]="country.key">
+      {{ country.key }}
+    </option>
+  <!-- </select> -->
+</div>
+
+<div *ngIf="selectedCountry">
+  <label for="city">Select City:</label>
+  <!-- <select id="city" (change)="onSelectCity($event.target.value)"> -->
+    <option value="">-- Select City --</option>
+    <!-- <option *ngFor="let city of countries[selectedCountry]" [value]="city"> -->
+      <!-- {{ city }} -->
+    <!-- </option> -->
+  <!-- </select> -->
+</div>

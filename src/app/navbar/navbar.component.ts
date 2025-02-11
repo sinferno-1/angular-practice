@@ -1,17 +1,26 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
+  standalone: true,
   templateUrl: './navbar.component.html',
-  styleUrl:'./navbar.component.css',
-  imports:[],
+  styleUrls: ['./navbar.component.css'],
+  imports: [CommonModule],
 })
 export class NavbarComponent {
-  constructor(private router: Router) {}
+  username: string | null = '';
+
+  constructor(private authService: AuthService, private router: Router) {}
+
+  ngOnInit() {
+    this.username = this.authService.getUsername(); // Fetch username
+  }
 
   logout() {
-    localStorage.removeItem('loggedIn');
-    this.router.navigate(['/']);
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }
