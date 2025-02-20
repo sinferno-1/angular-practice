@@ -40,7 +40,6 @@
     />
     <small>Password must be at least 6 characters, include uppercase, lowercase, number, and a special character.</small>
 
-    <!-- ✅ Password Strength Bar -->
     <div class="strength-bar">
       <div [ngClass]="passwordStrength"></div>
     </div>
@@ -58,10 +57,8 @@
   <p>Already have an account? <a routerLink="/">Login here</a></p>
 </form>
 
-<!-- ✅ Error Message -->
 <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
 
-<!-- ✅ Success Modal -->
 <div *ngIf="showModal" class="modal">
   <div class="modal-content">
     <h2>Success!</h2>
