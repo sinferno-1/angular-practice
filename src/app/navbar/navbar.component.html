@@ -5,7 +5,7 @@
   </div>
 
   <div class="nav-user">
-    <span *ngIf="username">{{ username }}!</span> 
+    <span *ngIf="username">Hello {{ username }}!</span> 
     <button *ngIf="username" (click)="logout()">Logout</button>
   </div>
 </nav>

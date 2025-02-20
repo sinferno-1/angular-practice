@@ -93,8 +93,10 @@ export class SignupComponent {
       const { confirmPassword, ...userData } = this.signupForm.value;
       this.apiService.registerUser(userData).subscribe({
         next: () => {
+          
           this.successMessage = 'Registration Successful!';
           this.showModal = true;
+          this.router.navigate(['/']);
         },
         error: (error) => {
           this.errorMessage = error.message;
@@ -105,6 +107,6 @@ export class SignupComponent {
 
   redirectToLogin() {
     this.showModal = false;
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 }

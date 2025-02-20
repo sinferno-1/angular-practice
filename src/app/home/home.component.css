@@ -1,60 +1,35 @@
+div {
+  display: flex;
+  flex-direction: column;
+}
 
-.city-selection {
-    margin: 20px 0;
-    padding: 20px;
-    background-color: black;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  select {
-    padding: 10px;
-    font-size: 14px;
-    margin-top: 10px;
-    width: 100%;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-  }
-  
-  select:focus {
-    border-color: #007bff;
-  }
-  
-  button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 4px;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  h2 {
-    color: #333;
-    font-size: 22px;
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  label{
-    color: white;
-  }
+table {
+  border-collapse: collapse;
+  width: 80%;
+  margin: auto;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-  table{
-    border: 1px solid black;
-    border-collapse: collapse;
-  }
+th, td {
+  text-align: left;
+  padding: 8px;
+}
 
-  td{
-    border: 1px solid black;
-    padding: 10px;
-  }
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
