@@ -53,19 +53,16 @@ export class DashboardComponent {
   }
 
   showPopup() {
-    if (this.selectedCity) {
+    if (this.selectedCity && this.username) {
+      const currentDate = new Date().toISOString().split('T')[0]; // Get YYYY-MM-DD format
+      const currentTime = new Date().toLocaleTimeString(); // Get HH:MM:SS format
+  
+      this.apiService.updateUserCountryCity(this.username, this.selectedCountry, this.selectedCity, currentDate, currentTime).subscribe();
       this.isPopupVisible = true;
-    // Update the user's country and city in the database
-    if (this.username) {
-      this.apiService.updateUserCountryCity(this.username, this.selectedCountry, this.selectedCity).subscribe();
-      this.isPopupVisible = true;
-    }
     }
   }
 
   closePopup() {
     this.isPopupVisible = false;
   }
-
-  
 }

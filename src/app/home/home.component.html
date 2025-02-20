@@ -1,14 +1,24 @@
 <app-navbar></app-navbar>
 <div>
-  <h1>Welcome, {{ username }}</h1>
+  <h2>All Users' Location Data</h2>
   <table>
-    <tr>
-      <td>Country</td>
-      <td>City</td>
-    </tr>
-    <td><p> {{ country }}</p></td>
-    <td> <p> {{ city }}</p></td>
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Country</th>
+        <th>City</th>
+        <th>Date</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.username }}</td>
+        <td>{{ user.country }}</td>
+        <td>{{ user.city }}</td>
+        <td>{{ user.date }}</td>
+        <td>{{ user.time }}</td>
+      </tr>
+    </tbody>
   </table>
-  
- 
 </div>

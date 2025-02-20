@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+// import { map, catchError } from 'rxjs/operators';
+import { map, catchError, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -12,22 +13,32 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   registerUser(user: any): Observable<any> {
-    return this.checkUserExists(user.username).pipe(
-      map((exists) => {
-        if (exists) {
-          throw new Error('User already exists!');
+    return this.http.get<any[]>(this.apiUrl).pipe(
+      map((users) => {
+        if (users.some((u) => u.username === user.username)) {
+          throw new Error('Username already exists!');
         }
-        return this.http.post(this.apiUrl, user).subscribe();
+        if (users.some((u) => u.email === user.email)) {
+          throw new Error('Email already exists!');
+        }
+        return user; // Return validated user
       }),
-      catchError((error) => {
-        return throwError(() => new Error(error.message));
-      })
+      catchError((error) => throwError(() => new Error(error.message))),
+      switchMap((validatedUser: any) => this.http.post(this.apiUrl, validatedUser))
     );
   }
+  
+  
 
   checkUserExists(username: string): Observable<boolean> {
     return this.http.get<any[]>(this.apiUrl).pipe(
       map((users) => users.some((user) => user.username === username))
+    );
+  }
+
+  checkEmailExists(email: string): Observable<boolean> {
+    return this.http.get<any[]>(this.apiUrl).pipe(
+      map((users) => users.some((user) => user.email === email))
     );
   }
 
@@ -36,22 +47,31 @@ export class ApiService {
       map((users) => users.find((user) => user.username === username && user.password === password))
     );
   }
-  updateUserCountryCity(username: string, country: string, city: string): Observable<any> {
+
+  updateUserCountryCity(username: string, country: string, city: string, date: string, time: string): Observable<any> {
     return this.http.get<any[]>(this.apiUrl).pipe(
       map((users) => users.find((user) => user.username === username)),
-      catchError((error) => {
-        return throwError(() => new Error(error.message));
-      }),
       map((user) => {
         if (!user) {
           throw new Error('User not found');
         }
         user.country = country;
         user.city = city;
+        user.date = date;  // Add date field
+        user.time = time;  // Add time field
         return this.http.put(`${this.apiUrl}/${user.id}`, user).subscribe();
+      }),
+      catchError((error) => {
+        return throwError(() => new Error(error.message));
       })
     );
   }
+  
+  getUsers(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
+  }
+  
+  
   getUserDetails(username: string): Observable<any> {
     return this.http.get<any[]>(this.apiUrl).pipe(
       map((users) => users.find((user) => user.username === username)),

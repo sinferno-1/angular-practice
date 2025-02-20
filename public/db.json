@@ -6,7 +6,11 @@
       "lastName": "Gupta",
       "username": "sinferno",
       "dob": "2025-02-04",
-      "password": "879575@Annnnnnnnnnnnnnnn"
+      "password": "879575@Annnnnnnnnnnnnnnn",
+      "country": "Germany",
+      "city": "Cologne",
+      "date": "2025-02-20",
+      "time": "12:39:07 PM"
     },
     {
       "id": "e4f3",
@@ -63,6 +67,104 @@
       "dob": "2000-06-14",
       "password": "123@Qwer",
       "confirmPassword": "123@Qwer"
+    },
+    {
+      "id": "6834",
+      "firstName": "Anu",
+      "lastName": "Gupta",
+      "username": "sinferno1",
+      "dob": "2025-02-06",
+      "email": "cshin2512@gmail.com1",
+      "password": "879575@Annnnnnnnnnnnnnnn",
+      "confirmPassword": "879575@Annnnnnnnnnnnnnnn"
+    },
+    {
+      "id": "b220",
+      "firstName": "Anu",
+      "lastName": "eec",
+      "username": "sinferno13",
+      "dob": "2025-02-05",
+      "email": "cshin2512@gmail.com2",
+      "password": "879575@Annnnnnnnnnnnnnnn",
+      "confirmPassword": "879575@Annnnnnnnnnnnnnnn"
+    },
+    {
+      "id": "1264",
+      "firstName": "Garvita Sen",
+      "lastName": "eec",
+      "username": "rrrr3",
+      "dob": "2025-02-13",
+      "email": "mocored719@almaxe2n.com",
+      "password": "123@An",
+      "confirmPassword": "123@An"
+    },
+    {
+      "id": "9637",
+      "firstName": "hello",
+      "lastName": "hi",
+      "username": "bye",
+      "dob": "2025-02-14",
+      "email": "sinferno@gmail.com",
+      "password": "123@An",
+      "confirmPassword": "123@An",
+      "country": "France",
+      "city": "Toulouse",
+      "date": "2025-02-20",
+      "time": "12:38:35 PM"
+    },
+    {
+      "id": "7cc3",
+      "firstName": "ss",
+      "lastName": "eec",
+      "username": "bhak",
+      "dob": "2025-02-06",
+      "email": "cshin2512@gmail.com7",
+      "password": "123@An",
+      "confirmPassword": "123@An",
+      "country": "Canada",
+      "city": "Montreal",
+      "date": "2025-02-20",
+      "time": "12:38:12 PM"
+    },
+    {
+      "id": "3664",
+      "firstName": "Garvita Sen",
+      "lastName": "Sharma",
+      "username": "bhaek",
+      "dob": "2025-02-14",
+      "email": "cshin2512@gmail.com3",
+      "password": "123@An",
+      "confirmPassword": "123@An",
+      "country": "Australia",
+      "city": "Perth",
+      "date": "2025-02-20",
+      "time": "12:32:01 PM"
+    },
+    {
+      "id": "be35",
+      "firstName": "riyan",
+      "lastName": "Gupta",
+      "username": "riyan",
+      "dob": "2025-02-07",
+      "email": "cshin2512@gmail.com23",
+      "password": "123@An",
+      "confirmPassword": "123@A"
+    },
+    {
+      "id": "571d",
+      "firstName": "Garvita Sen",
+      "lastName": "Sharma",
+      "username": "hell",
+      "email": "mocored719@almaxe2n.comh",
+      "password": "123@An"
+    },
+    {
+      "id": "410d",
+      "firstName": "g",
+      "lastName": "jj",
+      "username": "bye2",
+      "email": "cshin2512@jj",
+      "password": "123@An"
     }
   ]
 }

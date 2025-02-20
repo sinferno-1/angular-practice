@@ -16,7 +16,7 @@ export class NavbarComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    this.username = this.authService.getUsername(); // Fetch username
+    this.username = this.authService.getUsername();
   }
 
   logout() {

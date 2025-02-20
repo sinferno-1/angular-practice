@@ -13,28 +13,17 @@ import { ApiService } from '../api.service';
   imports: [CommonModule, FormsModule, NavbarComponent,],  
 })
 export class HomeComponent implements OnInit {
-  username: string | null = '';
-  country: string | null = '';
-  city: string | null = '';
+  users: any[] = []; // Store all users
 
-  constructor(
-    private authService: AuthService,
-    private apiService: ApiService,
-    private router: Router
-  ) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit() {
-    this.username = this.authService.getUsername();
-    if (this.username) {
-      this.apiService.getUserDetails(this.username).subscribe(
-        (user) => {
-          this.country = user.country || 'Not set';
-          this.city = user.city || 'Not set';
-        },
-        (error) => {
-          console.error('Error fetching user details:', error);
-        }
-      );
-    }
+    this.fetchUsers();
+  }
+
+  fetchUsers() {
+    this.apiService.getUsers().subscribe((data) => {
+      this.users = data.filter(user => user.country && user.city && user.date && user.time); // Only show users with location data
+    });
   }
 }

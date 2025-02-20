@@ -1,56 +1,109 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ApiService } from '../api.service';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule],
 })
 export class SignupComponent {
   signupForm: FormGroup;
-  errorMessage = '';
-  passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+  showModal: boolean = false;
+  passwordStrength: string = '';
+  errorMessage: string = '';
+  successMessage: string = '';
+  usernameExists: boolean = false;
+  emailExists: boolean = false;
+  maxDate: string = '';
+
+ 
 
   constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router) {
-    this.signupForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      username: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      dob: ['', Validators.required],
-      password: ['', [Validators.required, Validators.pattern(this.passwordPattern)]],
-      confirmPassword: ['', Validators.required]
-    }, { validator: this.passwordMatchValidator });
+    const today = new Date();
+    this.maxDate = today.toISOString().split('T')[0];
+
+    this.signupForm = this.fb.group(
+      {
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        username: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(6),
+            Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$'),
+          ],
+        ],
+        confirmPassword: ['', Validators.required],
+      },
+      { validators: this.passwordsMatchValidator }
+    );
   }
 
-  passwordMatchValidator(form: FormGroup) {
-    return form.get('password')!.value === form.get('confirmPassword')!.value ? null : { mismatch: true };
+  passwordsMatchValidator(form: FormGroup) {
+    const password = form.get('password')?.value;
+    const confirmPassword = form.get('confirmPassword')?.value;
+    return password === confirmPassword ? null : { passwordsMismatch: true };
+  }
+
+  checkUsernameExists() {
+    const username = this.signupForm.get('username')?.value;
+    if (username) {
+      this.apiService.checkUserExists(username).subscribe((exists) => {
+        this.usernameExists = exists;
+      });
+    }
+  }
+
+  checkEmailExists() {
+    const email = this.signupForm.get('email')?.value;
+    if (email) {
+      this.apiService.checkEmailExists(email).subscribe((exists) => {
+        this.emailExists = exists;
+      });
+    }
+  }
+
+  checkPasswordStrength() {
+    const password = this.signupForm.get('password')?.value || '';
+    let strength = 0;
+
+    if (password.length >= 6) strength += 1;
+    if (/[A-Z]/.test(password)) strength += 1;
+    if (/[a-z]/.test(password)) strength += 1;
+    if (/\d/.test(password)) strength += 1;
+    if (/[@$!%*?&]/.test(password)) strength += 1;
+
+    if (strength <= 2) this.passwordStrength = 'weak';
+    else if (strength === 3 || strength === 4) this.passwordStrength = 'medium';
+    else this.passwordStrength = 'strong';
   }
 
   signup() {
-    if (this.signupForm.valid) {
-      console.log('Form is valid, attempting to register user:', this.signupForm.value);
-
-      this.apiService.registerUser(this.signupForm.value).subscribe({
+    if (this.signupForm.valid && !this.usernameExists && !this.emailExists) {
+      const { confirmPassword, ...userData } = this.signupForm.value;
+      this.apiService.registerUser(userData).subscribe({
         next: () => {
-          alert('Registration successful!');
-          localStorage.setItem('username', this.signupForm.value.username);
-          this.router.navigate(['/home']);
+          this.successMessage = 'Registration Successful!';
+          this.showModal = true;
         },
-        error: (err) => {
-          console.error('Error during registration:', err);
-          this.errorMessage = err.message;
+        error: (error) => {
+          this.errorMessage = error.message;
         },
       });
-    } else {
-      console.log('Form is invalid:', this.signupForm.errors);
-      this.errorMessage = 'Please ensure all fields are correctly filled out and passwords match.';
     }
+  }
+
+  redirectToLogin() {
+    this.showModal = false;
+    this.router.navigate(['/login']);
   }
 }

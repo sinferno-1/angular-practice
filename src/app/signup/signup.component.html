@@ -11,33 +11,61 @@
 
   <div>
     <label for="username">Username:</label>
-    <input type="text" id="username" formControlName="username" required />
+    <input type="text" id="username" formControlName="username" (blur)="checkUsernameExists()" required />
+    <small *ngIf="usernameExists" style="color: red;">Username already taken!</small>
   </div>
 
   <div>
     <label for="dob">Date of Birth:</label>
-    <input type="date" id="dob" formControlName="dob" required />
+    <input type="date" id="dob" formControlName="dob" [max]="maxDate" required />
   </div>
 
   <div>
     <label for="email">Email:</label>
-    <input type="email" id="email" formControlName="email" required />
+    <input type="email" id="email" formControlName="email" (blur)="checkEmailExists()" required />
+    <small *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" style="color: red;">
+      Invalid email format!
+    </small>
+    <small *ngIf="emailExists" style="color: red;">Email already in use!</small>
   </div>
 
   <div>
     <label for="password">Password:</label>
-    <input type="password" id="password" formControlName="password" required />
+    <input
+      type="password"
+      id="password"
+      formControlName="password"
+      required
+      (input)="checkPasswordStrength()"
+    />
+    <small>Password must be at least 6 characters, include uppercase, lowercase, number, and a special character.</small>
+
+    <!-- ✅ Password Strength Bar -->
+    <div class="strength-bar">
+      <div [ngClass]="passwordStrength"></div>
     </div>
+  </div>
 
   <div>
     <label for="confirmPassword">Confirm Password:</label>
     <input type="password" id="confirmPassword" formControlName="confirmPassword" required />
-    <small>Password must be at least 6 characters, include uppercase, lowercase, number, and a special character.</small>
- 
+    <div *ngIf="signupForm.hasError('passwordsMismatch')">
+      <small style="color: red">Passwords do not match!</small>
+    </div>
   </div>
 
-  <button type="submit" [disabled]="signupForm.invalid">Sign Up</button>
+  <button type="submit" [disabled]="signupForm.invalid || usernameExists || emailExists">Sign Up</button>
   <p>Already have an account? <a routerLink="/">Login here</a></p>
 </form>
+
+<!-- ✅ Error Message -->
 <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
 
+<!-- ✅ Success Modal -->
+<div *ngIf="showModal" class="modal">
+  <div class="modal-content">
+    <h2>Success!</h2>
+    <p>{{ successMessage }}</p>
+    <button (click)="redirectToLogin()">OK</button>
+  </div>
+</div>
