@@ -13,7 +13,7 @@ import { ApiService } from '../api.service';
   imports: [CommonModule, FormsModule, NavbarComponent,],  
 })
 export class HomeComponent implements OnInit {
-  users: any[] = []; // Store all users
+  users: any[] = []; 
 
   constructor(private apiService: ApiService) {}
 
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
 
   fetchUsers() {
     this.apiService.getUsers().subscribe((data) => {
-      this.users = data.filter(user => user.country && user.city && user.date && user.time); // Only show users with location data
+      this.users = data.filter(user => user.country && user.city && user.date && user.time); 
     });
   }
 }

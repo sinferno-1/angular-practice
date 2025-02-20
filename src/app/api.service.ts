@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-// import { map, catchError } from 'rxjs/operators';
 import { map, catchError, switchMap } from 'rxjs/operators';
 
 @Injectable({
@@ -21,7 +20,7 @@ export class ApiService {
         if (users.some((u) => u.email === user.email)) {
           throw new Error('Email already exists!');
         }
-        return user; // Return validated user
+        return user; 
       }),
       catchError((error) => throwError(() => new Error(error.message))),
       switchMap((validatedUser: any) => this.http.post(this.apiUrl, validatedUser))
@@ -57,8 +56,8 @@ export class ApiService {
         }
         user.country = country;
         user.city = city;
-        user.date = date;  // Add date field
-        user.time = time;  // Add time field
+        user.date = date;
+        user.time = time; 
         return this.http.put(`${this.apiUrl}/${user.id}`, user).subscribe();
       }),
       catchError((error) => {

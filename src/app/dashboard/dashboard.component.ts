@@ -15,9 +15,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
   imports:[FormsModule, CommonModule, NavbarComponent,],
 })
 export class DashboardComponent {
-  // loggedInUser: any; // Assume this holds the logged-in user's information
 
-  // constructor(private apiService: ApiService) {}
 
 
   countries = ['India', 'USA', 'UK', 'Australia', 'Canada', 'Germany', 'France', 'Japan', 'China', 'Brazil'];
@@ -43,7 +41,7 @@ export class DashboardComponent {
   constructor(private apiService: ApiService, private authService: AuthService) {}
 
   ngOnInit() {
-    this.username = this.authService.getUsername(); // Fetch username
+    this.username = this.authService.getUsername(); 
   }
 
 
@@ -54,8 +52,8 @@ export class DashboardComponent {
 
   showPopup() {
     if (this.selectedCity && this.username) {
-      const currentDate = new Date().toISOString().split('T')[0]; // Get YYYY-MM-DD format
-      const currentTime = new Date().toLocaleTimeString(); // Get HH:MM:SS format
+      const currentDate = new Date().toISOString().split('T')[0]; 
+      const currentTime = new Date().toLocaleTimeString(); 
   
       this.apiService.updateUserCountryCity(this.username, this.selectedCountry, this.selectedCity, currentDate, currentTime).subscribe();
       this.isPopupVisible = true;

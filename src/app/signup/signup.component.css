@@ -1,4 +1,4 @@
-/* Form Container */
+
 form {
     max-width: 400px;
     margin: 50px auto;
@@ -8,7 +8,6 @@ form {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
-  /* Form Fields */
   input {
     width: 100%;
     padding: 10px;
@@ -21,7 +20,6 @@ form {
     border-color: #007bff;
   }
   
-  /* Submit Button */
   button {
     width: 100%;
     padding: 12px;
@@ -43,7 +41,6 @@ form {
     background-color: #0056b3;
   }
   
-  /* Error Message */
   .error {
     color: red;
     font-size: 14px;
@@ -51,7 +48,6 @@ form {
     text-align: center;
   }
   
-/* Password Strength Bar */
 .strength-bar {
   width: 100%;
   height: 5px;
@@ -69,20 +65,19 @@ form {
 
 .weak {
   width: 33%;
-  background: red; /* 🔴 Weak */
+  background: red; 
 }
 
 .medium {
   width: 66%;
-  background: blue; /* 🔵 Medium */
+  background: blue; 
 }
 
 .strong {
   width: 100%;
-  background: green; /* 🟢 Strong */
+  background: green; 
 }
 
-/* Modal Styling */
 .modal {
   position: fixed;
   top: 50%;
@@ -105,9 +100,7 @@ form {
   border: none;
   cursor: pointer;
   margin-top: 10px;
-}
-
-  
+} 
   .error {
     color: red;
   }
